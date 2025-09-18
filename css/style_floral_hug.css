@@ -1,20 +1,30 @@
-body {
-    background-color: #fff8f0;
-    font-family: "Segoe UI", sans-serif;
+*{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-header.title {
-    width: 100%;
-    float: none;
+.container{
+    display: grid;
+    grid-template-areas: 'Navbar Navbar Navbar'
+                        'sidebar main sidebar_right_top'
+                        'sidebar main sidebar_right_bottom'
+                        'sidebar footer footer';
+                        grid-template-columns: 0.5fr 1.8fr 0.7fr;
+                        grid-template-rows: auto;
+                        grid-auto-rows: auto;
+                        min-height: 100vh;
+}
+
+.title {
+    grid-area: Navbar;
     background: linear-gradient( to right, #8FBC8F, #558355);
-    text-align: center;
     font-family: Cursive;
-    min-height: 80px;
+    text-align: center;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
     position: relative;
-    box-sizing: border-box;
-    padding: 10px;
 }
 
 .title h1 {
@@ -31,93 +41,76 @@ header.title {
 
 .slogan1 {
     width: 205px;
-    height: 30px;
+    height: 27px;
     border: 1px solid black;
-    font-size: 19px;
+    font-size: 18px;
     background-color: #FDF5E6;
     color: #852648;
-    position: absolute;
-    left: 20px;
-    top: 30px;
-    display: block;
-    
+    margin-bottom: 20px;
+    margin-left: 10px;
 }
 
 #about_us {
-    float: left;
-    width: 20%;
-    min-height: calc(100vh - 80px);
-    background-color: #F3D0C3;
+    grid-area: sidebar;
     background: linear-gradient( to bottom, #F3D0C3, #795663);
-    box-sizing: border-box;
-    padding: 0 20px 0 20px;
+    padding: 10px 10px 0 10px;
 }
+
 #about_us h4{
     text-align: center;
     font-size: 18px;
-    margin-top: -5%;
     margin-bottom: 10px;
 }
+
 #about_us h3{
-    margin-bottom: 15px;
+    margin: 15px;
+
 }
+
 #about_us p{
-    text-indent: 15px;
-    font-size: 14px;
+    text-indent: 10px;
+    font-size: 15px;
 }
+
 .team {
-    overflow: hidden; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 10px;
     background-color: #FDF5E6;
     padding: 10px;
     border: 2px solid black;
     border-radius: 10px;
 }
-
 .team-info {
-    float: left; 
-    width: 70%; 
+    flex: 1; 
     padding-right: 20px;
-    box-sizing: border-box; 
 }
-
 .team-photo {
     float: right; 
     width: 30%;
 }
-
 .team-photo img {
     width: 65px;
-    height: 130px; 
     object-fit: cover;
     display: block;
     border-radius: 50px;
 }
 
 #menu {
+    grid-area: main;
     text-align: center;
-    width: calc(100% - 22% - 20%);
-    height: 452px;
     background-color: #FDF5E6;
-    box-sizing: border-box;
-    float: left;
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: -9px;
-}
-
-#menu h2 {
     font-family: Cursive;
-    font-size: 25px;
-    color: #283D3B;
 }
 
 .menu-category {
     margin-bottom: 5px;
 }
 .menu-category h3 {
-    margin-bottom: 7px;
-    font-family: Cursive;
+    margin: 5px;
     font-size: 17px;
 }
 .menu-category ul {
@@ -139,11 +132,15 @@ header.title {
 }
 
 #page_menu{
-    float: right;
-    width: 22%; 
-    min-height: 240px;
+    grid-area: sidebar_right_top;
     background-color: #F3D0C3;
-    box-sizing: border-box;
+}
+
+#page_menu h2{
+    text-align: center;
+    font-family: Cursive;
+    font-size: 25px;
+    color: #795663;
 }
 #page_menu ol {
     list-style: none;
@@ -174,14 +171,12 @@ header.title {
 }
 
 #contacts{
-    float: right;
-    width: 22%; 
-    min-height: calc(100vh - 80px - 240px - 226px);
+    grid-area: sidebar_right_bottom;
     background-color: #795663;
-    box-sizing: border-box;
     padding-left: 20px;
     color: #D9BCAF;
 }
+
 #contacts h2 {
     font-size: 21px;
     text-align: center;
@@ -225,16 +220,18 @@ header.title {
 }
 
 #gallery{
+    grid-area: footer;
     background-color: #283D3B;
-    float: right;
-    min-height: calc(100vh - 80px - 452px);
-    width: 80%;
     margin: 0;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start;;
 }
 
 .gallery_block{
     text-align: center;
 }
+
 #gallery img{
     display: inline-block;
     width: 15%;
@@ -243,7 +240,6 @@ header.title {
     border-radius: 20px;
     object-fit: cover;
     transition: transform 0.3s ease;
-    padding-top: 4%;
     
 }
 
@@ -256,13 +252,33 @@ header.title {
     border: 1px solid black;
     background-color: #8a9688;
     color: #FDF5E6;
-    position: absolute;
-    display: block;
-    margin-left: 25px;
-    font-size: 19px;
+    font-size: 18px;
     height: 30px;
     font-family: Cursive;
     text-align: center;
-    margin-top: 2px;
     border-radius: 5px;
+    width: 300px;
+    margin-left: 15px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-areas: 'Navbar'
+                             'sidebar'
+                             'main'
+                             'sidebar_right_top'
+                             'sidebar_right_bottom'
+                             'footer';
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .slogan1, .slogan2 {
+        position: static;
+        margin: 10px auto;
+    }
+
+    .gallery_block img {
+        width: 45%;
+    }
 }
